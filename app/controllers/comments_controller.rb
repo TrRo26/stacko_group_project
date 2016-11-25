@@ -17,17 +17,22 @@ get '/answers/:id/comments/new' do
 end
 
 post '/comments' do
+
+  question_id =  params[:question_id]
+
   if logged_in?
-    comment = Comment.new(params[:comments])
+    comment = Comment.new(params[:comment])
     if comment.save
-      redirect '/questions/#{params[:question_id]}'
+
+      redirect "/questions/#{question_id}"
     else
       @question = Question.find(params[:question_id])
       @errors = comment.errors.full_messages
+
       erb :'questions/show'
     end
   else
-    redirect '/questions/#{comment[:question_id]}'
+    redirect "/questions/#{question_id}"
   end
 end
 
