@@ -1,4 +1,5 @@
 get '/questions/:id/comments/new' do
+  @id = params[:id]
   @type = "Question"
   @question_id = params[:id]
 
@@ -17,7 +18,22 @@ end
 
 post '/comments' do
 
+  question_id =  params[:question_id]
 
+  if logged_in?
+    comment = Comment.new(params[:comment])
+    if comment.save
+
+      redirect "/questions/#{question_id}"
+    else
+      @question = Question.find(params[:question_id])
+      @errors = comment.errors.full_messages
+
+      erb :'questions/show'
+    end
+  else
+    redirect "/questions/#{question_id}"
+  end
 end
 
 delete '/comments/:id' do
