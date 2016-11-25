@@ -1,9 +1,11 @@
 <div>
   <form method="post" action ="/comments">
+    <input type="hidden" name="question_id" value=<%= @question_id %>>
     <input type="hidden" name="comment[type]" value=<%= @type %>>
     <input type="hidden" name="comment[id]" value=<%= @id %>>
+    <input type="hidden" name="comment[commenter]" value=<%= @id %>>
     <label for="comment[text]">Comment Text</label>
-    <input type="text" name="comment[text]">
+    <textarea rows="5" cols="50" placeholder="Comment Text" name="comment[text]"></textarea>
     <input type="submit" value="Comment">
   </form>
 </div>
