@@ -1,0 +1,11 @@
+<!-- this partial may not work right: need to specify question or answer -->
+
+<% if logged_in? %>
+  <form method='post' action='/comments'>
+    <input type='hidden' name='comment[commenter_id]' value='<%=current_user.id %>' >
+    <br>
+    <textarea name='comment[text]' placeholder='Add a new comment here' rows='3' cols='50'></textarea>
+     <br>
+    <input type='submit'>
+  </form>
+<% end %>
