@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
 	validates :username, { presence: true, length: { in: 6..12 }, uniqueness: true }
 	validates :email, { presence: true, format: { with: /@\S*[.][a-z]{3}/}, uniqueness: true }
-	validates :password, { presence: true, length: { in: 6..12 } }
+	validates :password, { presence: true }
 
   def password
     @password ||= BCrypt::Password.new(encrypted_password)
