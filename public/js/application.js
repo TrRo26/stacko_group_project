@@ -17,9 +17,8 @@ $(document).ready(function() {
     })
     .done(function(response) {
       $("#login-form").slideUp();
-      $(response);
-
-      debugger
+      console.log(response);
+      $("header").replaceWith(response);
     })
     .fail(function() {
       console.log("error");
