@@ -9,6 +9,7 @@ $(document).ready(function() {
     event.preventDefault();
     var $form = $('#login-form')
     var formData = $('#login-form').serialize();
+
     $.ajax({
       url: $form.attr("action"),
       type: $form.attr("method"),
@@ -16,9 +17,14 @@ $(document).ready(function() {
     })
     .done(function(response) {
       $("#login-form").slideUp();
+      $(response);
+
+      debugger
     })
     .fail(function() {
       console.log("error");
     });
+
+
   });
 });

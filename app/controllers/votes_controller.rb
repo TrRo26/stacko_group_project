@@ -17,11 +17,11 @@ post '/votes' do
   end
 end
 
-delete /votes/:id do
-  # add parameter values
-  vote = Vote.find_by(voter_id: , voteable_type:, voteable_id: )
+# delete '/votes/:id' do
+#   # add parameter values
+#   vote = Vote.find_by(voter_id: , voteable_type:, voteable_id: )
 
-  vote.destroy
+#   vote.destroy
 
-  # figure out how to redirect
-end
+#   # figure out how to redirect
+# end

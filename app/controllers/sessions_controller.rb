@@ -13,7 +13,7 @@ post '/sessions' do
     session[:user_id] = @user.id
     if request.xhr?
       # 200
-      current_user.username
+      erb :"_nav", layout: false
     else
       redirect '/'
     end
