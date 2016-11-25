@@ -17,7 +17,7 @@ post '/votes' do
   end
 end
 
-delete /votes/:id do
+delete '/votes/:id' do
   # add parameter values
   vote = Vote.find_by(voter_id: , voteable_type:, voteable_id: )
 
