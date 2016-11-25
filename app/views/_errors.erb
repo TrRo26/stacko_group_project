@@ -1,8 +1,8 @@
 <% if @errors %>
-<div>
-  <h3>ERRORS: </h3>
-  <% @errors.each do |error|  %>
+  <div class='container'>
+    <h3>ERRORS: </h3>
+    <% @errors.each do |error|  %>
     <p><%= error %></p>
-  <% end %>
-</div>
+    <% end %>
+  </div>
 <% end %>
