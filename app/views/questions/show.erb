@@ -4,11 +4,6 @@
 
 <!-- comments on question -->
 
-
-
-
-
-
 <!-- new question form -->
 <%= erb :'_errors' %>
 
@@ -19,10 +14,11 @@
 <% end %>
 
 <!-- add comment to question: -->
-<div class='right'>
+
 <h3>Question Comments:</h3>
   <% if @questions.comments %>
     <% @questions.comments.each do |comment| %>
+    <div class='right container'>
       <p><%= comment.text %> (<%= comment.commenter.username %>)</p>
 
       <% if current_user.try('id') == comment.try('commenter').id %>
@@ -33,14 +29,9 @@
           <button type='submit'>Delete</button>
         </form>
       <% end %>
-
+      </div>
     <% end %>
   <% end %>
-</div>
-
-
-
-
 
 <br>
 <h3>Answers:</h3>
@@ -53,25 +44,43 @@
 
 <% if @answers %>
   <% @answers.each do |answer| %>
+  <div class="container">
     <p><%= answer.answer %> (<%= answer.answerer.username %>)</p>
     <% if current_user.try('id') == answer.try('answerer').id %>
       <form method='post' action='/answers'>
         <input type='hidden' name='_method' value='delete'>
         <input type='hidden' name='answer_id' value='<%= answer.id %>'>
         <button type='submit'>Delete</button>
-
       </form>
     <% end %>
+      <!-- comments for answers -->
+      <% if answer.comments %>
+        <div class="right">
+          <p>Comments:</p>
+          <% answer.comments.each do |comment| %>
+            <p><%= comment.text %> (<%= comment.commenter.username %>)</p>
+
+            <% if current_user.try('id') == comment.try('commenter').id %>
+              <form method='post' action='/comments/<%= comment.id %>'>
+                <input type='hidden' name='_method' value='delete'>
+                <input type='hidden' name='comment_id' value='<%= comment.id %>'>
+                <input type='hidden' name='question_id' value='<%= answer.id %>'>
+                <button type='submit'>Delete</button>
+              </form>
+            <% end %>
+
+          <% end %>
+        </div>
+
+      <% end %>
+
+    <a href='/answers/<%= answer.id%>/comments/new'> Add a comment</a>
+    </div>
   <% end %>
+
 <% end %>
 
 
-<!-- add answers -->
-<!-- add comment button for both -->
-<!-- questions.comments on question -->
-<!-- answers.comments on answers -->
-
-<!-- add delete button for answers (edit stretch) -->
 <!-- need BEST ANSWER. -->
 <!-- could make into nice list -->
 <!-- add upvotes thing -->
