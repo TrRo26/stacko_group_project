@@ -20,6 +20,7 @@ end
 delete '/sessions' do
   if logged_in?
     session[:user_id] = nil
+    redirect '/'
   else
     redirect '/'
   end
