@@ -1,0 +1,20 @@
+<br>
+
+<% if @error %>
+  <center><h4><%= erb :"/_error" %></h4></center>
+<% end %>
+
+<form id="register-form" method="post" action="/users">
+  <fieldset>
+    <legend><h3>Create New Account:</h3></legend><br>
+
+    <label>Username:&nbsp;</label>
+    <input type = "text" name = "user[username]"><br><br>
+    <label>Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+    <input type="text" name="user[email]"><br><br>
+    <label>Password: &nbsp;</label>
+    <input type = "password" name="user[password]"><br><br>
+
+    <input type="submit" value="Create Account">
+  </fieldset>
+</form>
