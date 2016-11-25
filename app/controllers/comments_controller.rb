@@ -1,5 +1,5 @@
 get '/questions/:id/comments/new' do
-  @id = params[:id]
+  @commentable_id = params[:id]
   @type = "Question"
   @question_id = params[:id]
 
@@ -8,10 +8,10 @@ end
 
 
 get '/answers/:id/comments/new' do
-  @id = params[:id]
-  @type = "Answer"
   answer = Answer.find(params[:id])
   @question_id = answer.question_id
+  @type = "Answer"
+  @commentable_id = params[:id]
 
   erb :'comments/new'
 end

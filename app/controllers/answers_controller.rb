@@ -20,6 +20,7 @@ delete '/answers' do
 	answer_id = params[:answer_id]
 	answer = Answer.find(answer_id)
 	question_id = answer.question.id
+	@questions = Question.find(question_id)
 	answer.destroy
-	erb :'/questi---ons/show'
+	redirect "/questions/#{question_id}"
 end
