@@ -7,18 +7,18 @@ body {
 }
 
 header {
-  background-color: #F4712D;
-  padding: 5px 5px;
+  background-color: #4682b4;
+  padding: 15px 5px;
 }
 
 header h1 {
-  font-size: 11pt;
+  font-size: 15pt;
   display: inline;
 }
 
 header p {
   margin-left: 5px ;
-  font-size: 10pt;
+  font-size: 12pt;
   display: inline;
 }
 
@@ -97,7 +97,7 @@ article p a.delete:before {
 
 }
 
-form#posts input[type='text'] {
+form#questions input[type='text'] {
   width: 200px;
   margin-left: 20px;
   font-size: 10pt;
@@ -105,7 +105,7 @@ form#posts input[type='text'] {
 
 }
 
-form#posts input[type='submit'] {
+form#questions input[type='submit'] {
   font-size: 10pt;
   margin-left: 5px;
   border-width: 1px;
