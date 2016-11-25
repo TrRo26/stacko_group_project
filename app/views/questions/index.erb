@@ -4,8 +4,10 @@
 <%= erb :'_errors' %>
 
 <% if @questions %>
-  <p> **Testing questions! make clickable (into forms!)</p>
   <% @questions.each do |question| %>
-    <p><%= question.title %></p>
+    <p><Question (author)</p>
+    <a href="/questions/<%= question.id %>"><%= question.title %> (<%= question.user.username %>)</a>
   <% end %>
 <% end %>
+
+<!-- could add delete-edit button here. or can just be on show.erb -->
