@@ -14,13 +14,21 @@
 </head>
 
 <body>
-  <header>
+  <header><center>
     <h1>Pile Too High</h1><br><br>
     <p>
-      <a href="#posts">new question</a>
-      <a href="#">comments</a>
-      <a href="#">login</a>
-    </p>
+    <% if logged_in? %>
+      <a href="/questions/new">new question</a>
+      <a href="#">profile</a><br><br>
+      <form action="/sessions" method="post">
+        <input type="submit" value="logout">
+        <input type="hidden" name="_method" value="delete">
+      </form>
+    <% else %>
+      <a href="/users/new">register</a>
+      <a href="/sessions/new">login</a>
+    <% end %>
+    </p></center>
   </header>
   <%= yield %>
 </body>
