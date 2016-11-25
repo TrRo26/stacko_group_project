@@ -2,15 +2,21 @@ get '/sessions/new' do
   if logged_in?
     redirect '/'
   else
-    erb :'sessions/new'
+    erb :'sessions/_new'
   end
 end
 
 post '/sessions' do
   @user = User.find_by(email: params[:user][:email])
+
   if @user && @user.authenticate(params[:user][:password])
     session[:user_id] = @user.id
-    redirect '/'
+    if request.xhr?
+      # 200
+      current_user.username
+    else
+      redirect '/'
+    end
   else
     @error = "Invalid email or password"
     redirect '/sessions/new'

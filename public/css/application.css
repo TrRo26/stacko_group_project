@@ -117,6 +117,10 @@ form#questions input[type='submit'] {
   display: inline;
 }
 
+#login-form {
+  display: none;
+}
+
 .upvote-button {
   background-color: transparent;
   border: none;
