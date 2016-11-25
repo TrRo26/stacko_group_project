@@ -1,5 +1,4 @@
 get '/questions/:id/comments/new' do
-  @id = params[:id]
   @type = "Question"
   @question_id = params[:id]
 

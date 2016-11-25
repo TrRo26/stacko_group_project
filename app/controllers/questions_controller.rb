@@ -44,6 +44,7 @@ end
 
 
 get '/questions/:id' do
+  p params
   @questions = Question.find(params[:id]) # not sure if i need this.
   @answers = Answer.where(question_id: params[:id])
   erb :'questions/show'

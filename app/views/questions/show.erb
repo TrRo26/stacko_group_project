@@ -1,17 +1,48 @@
 <!-- show a specific question's answers, etc -->
-<h1><em><%= @questions.title %> </em></h1>
+<h1><em><%= @questions.title %> (<%= @questions.user.username %>) </em></h1>
 <p> <%= @questions.body %> </p>
 
-<!-- question body -->
+<!-- comments on question -->
 
 
 
 
+
+
+<!-- new question form -->
+<%= erb :'_errors' %>
+
+<!-- make this into a partial: -->
+<% if logged_in? %>
+  <a href='/questions/<%= @questions.id%>/comments/new'> Add a comment.</a>
+
+<% end %>
+
+<!-- add comment to question: -->
+<div class='right'>
+<h3>Question Comments:</h3>
+  <% if @questions.comments %>
+    <% @questions.comments.each do |comment| %>
+      <p><%= comment.text %> (<%= comment.commenter.username %>)</p>
+      <% if current_user.try('id') == comment.try('commenter').id %>
+        <form method='post' action='/comments'>
+          <input type='hidden' name='_method' value='delete'>
+          <input type='hidden' name='answer_id' value='<%= comment.id %>'>
+          <button type='submit'>Delete</button>
+        </form>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+
+
+
+
+<br>
+<h3>Answers:</h3>
 <% if @answers %>
-  <br>
-  <h3>Answers:</h3>
   <% @answers.each do |answer| %>
-    <!-- <p>answers (author)</p> -->
     <p><%= answer.answer %> (<%= answer.answerer.username %>)</p>
     <% if current_user.try('id') == answer.try('answerer').id %>
       <form method='post' action='/answers'>
@@ -25,6 +56,12 @@
 <% end %>
 
 
+<!-- add answers -->
+<!-- add comment button for both -->
+<!-- questions.comments on question -->
+<!-- answers.comments on answers -->
 
 <!-- add delete button for answers (edit stretch) -->
 <!-- need BEST ANSWER. -->
+<!-- could make into nice list -->
+<!-- add upvotes thing -->
