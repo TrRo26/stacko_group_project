@@ -1,20 +1,18 @@
-<div class="container"><br>
+<br>
+
+<% if @error %>
+  <center><h4><%= erb :"/_error" %></h4></center>
+<% end %>
+
+<form action="/sessions" method="post">
   <fieldset>
     <legend><h3>Login:</h3></legend><br>
 
-      <% if @error %>
-        <center><h4><%= @error %></h4></center>
-      <% end %>
+    <label for="email">Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+    <input type="text" name="user[email]"><br><br>
+    <label for="password">Password: &nbsp;</label>
+    <input type="password" name="user[password]"><br><br>
 
-    <form action="/sessions" method="post">
-
-      <label for="email">Email: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-      <input type="text" name="user[email]"><br><br>
-
-      <label for="password">Password: &nbsp</label>
-      <input type="password" name="user[password]"><br><br>
-
-      <input type="submit" value="Login"><br>
-    </form>
+    <input type="submit" value="Login"><br>
   </fieldset>
-</div>
+</form>
