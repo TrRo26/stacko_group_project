@@ -1,11 +1,19 @@
 $(document).ready(function() {
+
+  if((window.location.href).includes('/sessions/new')){
+    $('#login-form').remove();
+  }
+  if((window.location.href).includes('/users/new')){
+    $('#register-form').remove();
+  }
+
   $("a#login-trigger").on('click', function(event) {
     event.preventDefault();
 
     $("#login-form").slideToggle();
   });
 
-  $('#login-form').find('input[type=submit]').on('click', function(event){
+  $('body').closest('input').on('submit', function(event){
     event.preventDefault();
     var $form = $('#login-form')
     var formData = $('#login-form').serialize();
@@ -23,7 +31,33 @@ $(document).ready(function() {
     .fail(function() {
       console.log("error");
     });
+  });
 
+/////////////////////////////////////////////////////////////////////////////
+
+  $("#register-trigger").on('click', function(event) {
+    event.preventDefault();
+
+    $("#register-form").slideToggle();
+  });
+
+  $('#register-form').on('submit', function(event){
+    event.preventDefault();
+    var $form = $('#register-form')
+    var formData = $('#register-form').serialize();
+
+    $.ajax({
+      url: $form.attr("action"),
+      type: $form.attr("method"),
+      data: formData
+    })
+    .done(function(response) {
+      $("#register-form").slideUp();
+      $("header").replaceWith(response);
+    })
+    .fail(function() {
+      console.log("error");
+    });
 
   });
 });

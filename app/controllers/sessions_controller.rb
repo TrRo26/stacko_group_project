@@ -2,7 +2,7 @@ get '/sessions/new' do
   if logged_in?
     redirect '/'
   else
-    erb :'sessions/_new'
+    erb :'sessions/new'
   end
 end
 

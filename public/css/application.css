@@ -121,6 +121,10 @@ form#questions input[type='submit'] {
   display: none;
 }
 
+#register-form {
+  display: none;
+}
+
 .upvote-button {
   background-color: transparent;
   border: none;
