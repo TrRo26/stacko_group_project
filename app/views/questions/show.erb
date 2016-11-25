@@ -14,16 +14,15 @@
 
 <!-- make this into a partial: -->
 <% if logged_in? %>
-  <a href='/questions/:id/comments/new'> Add a new comment here.</a>
+  <a href='/questions/<%= @questions.id%>/comments/new'> Add a comment.</a>
 
 <% end %>
 
 <!-- add comment to question: -->
-<h5> PUSH THESE COMMENTS OVER >:( </h5>
 <div class='right'>
 <h3>Question Comments:</h3>
-  <% if @comments %>
-    <% @comments.each do |comment| %>
+  <% if @questions.comments %>
+    <% @questions.comments.each do |comment| %>
       <p><%= comment.text %> (<%= comment.commenter.username %>)</p>
       <% if current_user.try('id') == comment.try('commenter').id %>
         <form method='post' action='/comments'>
