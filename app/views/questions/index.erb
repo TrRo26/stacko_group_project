@@ -1,0 +1,11 @@
+<!-- show all questions (index) -->
+<h1>Questions Index:</h1>
+
+<%= erb :'_errors' %>
+
+<% if @questions %>
+  <p> **Testing questions! make clickable (into forms!)</p>
+  <% @questions.each do |question| %>
+    <p><%= question.title %></p>
+  <% end %>
+<% end %>

@@ -1,0 +1,15 @@
+<!-- new question form -->
+<%= erb :'_errors' %>
+<!-- if logged in, then allow -->
+<% if logged_in? %>
+  <form method='post' action='/questions'>
+    <input type='hidden' name='question[author_id]' value='<%=current_user.id %>' >
+    <input type='text' name='question[title]' placeholder='Your Question Title'>
+    <br>
+    <textarea name='question[body]' placeholder='Your Question Details' rows='5' cols='50'></textarea>
+     <br>
+    <input type='submit'>
+  </form>
+<% end %>
+
+<!-- question should be href, show author, show upvotes. -->
