@@ -64,13 +64,13 @@
   <div class="container">
     <!--UPVOTE DEAR GOD-->
     <% if answer.votes.any? { |vote| vote.voter_id == current_user.id} %>
-      <form method="post" action="/votes">
+      <form method="post" action="/votes" >
         <input type="hidden" name="_method" value="delete">
         <input type="hidden" name="question_id" value="<%= @questions.id %>">
         <input type="hidden" name="vote[voteable_type]" value="Answer">
         <input type="hidden" name="vote[voteable_id]" value="<%= answer.id %>">
         <input type="hidden" name="vote[voter_id]" value="<%=current_user.id%> ">
-        <input type="submit" value="Downvote">
+        <input type="submit" value="<%=answer.votes.count %> votes" style="color: green">
       </form>
     <% else %>
       <form method="post" action="/votes">
@@ -78,7 +78,7 @@
         <input type="hidden" name="vote[voteable_type]" value="Answer">
         <input type="hidden" name="vote[voteable_id]" value="<%= answer.id %>">
         <input type="hidden" name="vote[voter_id]" value="<%=current_user.id%> ">
-        <input type="submit" value="Upvote">
+        <input type="submit" value="<%=answer.votes.count %> votes" style="color: red">
       </form>
     <% end %>
 
