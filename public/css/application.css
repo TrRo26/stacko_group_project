@@ -142,6 +142,7 @@ form#questions input[type='submit'] {
 }
 
 .right {
+  border: 2px solid black;
   left-margin: 60px auto;
   padding: 0px 20px 20px 20px;
 }
