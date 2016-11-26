@@ -81,8 +81,12 @@
         <input type="submit" value="Upvote">
       </form>
     <% end %>
-    <p><%= answer.answer %> (<%= answer.answerer.username %>)</p>
-    <p><%= answer.votes.count%> upvotes</p>
+
+    <p><%= answer.answer %> (<%= answer.answerer.username %>) : <%= answer.votes.count%> upvotes</p>
+    <br>
+
+
+    <!-- delete button -->
     <% if current_user.try('id') == answer.try('answerer').id %>
       <form method='post' action='/answers'>
         <input type='hidden' name='_method' value='delete'>
@@ -92,15 +96,12 @@
     <% end %>
       <!-- comments for answers -->
       <% if answer.comments %>
-        <div class="right">
           <p>Comments:</p>
           <% answer.comments.each do |comment| %>
-
-
+          <div class="right">
           <!--UPVOTE DEAR GOD-->
         <% if comment.votes.empty? %>
-              <h1>HELLO</h1>
-              <h2><%=comment.votes.empty?%></h2>
+
           <form method="post" action="/votes">
             <input type="hidden" name="question_id" value="<%= @questions.id %>">
             <input type="hidden" name="vote[voteable_type]" value="Comment">
@@ -119,6 +120,7 @@
           </form>
 
         <% else %>
+
           <form method="post" action="/votes">
             <input type="hidden" name="question_id" value="<%= @questions.id %>">
             <input type="hidden" name="vote[voteable_type]" value="Comment">
@@ -127,18 +129,8 @@
             <input type="submit" value="Upvote">
           </form>
         <% end %>
-          <p><%= answer.answer %> (<%= answer.answerer.username %>)</p>
-          <p><%= answer.votes.count%> upvotes</p>
-    <% if current_user.try('id') == answer.try('answerer').id %>
-      <form method='post' action='/answers'>
-        <input type='hidden' name='_method' value='delete'>
-        <input type='hidden' name='answer_id' value='<%= answer.id %>'>
-        <button type='submit'>Delete</button>
-      </form>
-
-    <% end %>
-            <p><%= comment.text %> (<%= comment.commenter.username %>)</p>
-            <p><%= comment.votes.count%> upvotes</p>
+          <p><%= comment.text %> (<%= comment.commenter.username %>) : <%= comment.votes.count%> upvotes</p>
+          <br>
 
             <% if current_user.try('id') == comment.try('commenter').id %>
               <form method='post' action='/comments/<%= comment.id %>'>
@@ -148,9 +140,9 @@
                 <button type='submit'>Delete</button>
               </form>
             <% end %>
+          </div>
 
           <% end %>
-        </div>
 
       <% end %>
 
