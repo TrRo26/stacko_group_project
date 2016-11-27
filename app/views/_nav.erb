@@ -1,18 +1,16 @@
 <header><center>
-    <h1>Pile Too High</h1><br><br>
-    <p>
-      <a href="/">home</a>
+      <ul><li><a href="/">home</a></li>
     <% if logged_in? %>
-      <a href="/questions/new">new question</a>
-      <a href="#">profile</a><br><br>
-      <a id="username" href="#"></a>
-      <form action="/sessions" method="post">
+      <li><a href="/questions/new">new question</a></li>
+      <li><a href="#">profile</a></li>
+      <li><a id="username" href="#"></a></li>
+      <li><form action="/sessions" method="post">
         <input class="button" type="submit" value="logout">
         <input type="hidden" name="_method" value="delete">
-      </form>
+      </form></li>
     <% else %>
-      <a id="register-trigger" href="/users/new">register</a>
-      <a class="button" id="login-trigger" href="/sessions/new">login</a>
+      <li><a id="register-trigger" href="/users/new">register</a></li>
+      <li><a class="button" id="login-trigger" href="/sessions/new">login</a></li>
     <% end %>
     </p></center>
     <%= erb :'sessions/_new' %>

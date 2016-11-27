@@ -1,17 +1,14 @@
-body {
+/*body {
   counter-reset:section;
   background-color: #F6F6EF;
   font-family: Verdana;
   max-width: 700px;
   margin: 0 auto;
-}
+}*/
 
-header {
-  background-color: #4682b4;
-  padding: 15px 5px;
-}
 
-header h1 {
+
+/*header h1 {
   font-size: 15pt;
   display: inline;
 }
@@ -29,7 +26,7 @@ header p a {
 
 header p a:nth-child(n + 2):before {
   content: " | ";
-}
+}*/
 
 article {
   margin: 5px 5px;
@@ -109,6 +106,7 @@ form#questions input[type='submit'] {
   font-size: 10pt;
   margin-left: 5px;
   border-width: 1px;
+  border-color: white;
   font-weight: bold;
   background-color: #F4712D;
 }
@@ -142,7 +140,177 @@ form#questions input[type='submit'] {
 }
 
 .right {
-  border: 2px solid black;
+  border: 2px hidden;
   left-margin: 60px auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px 20px 20px 20px;
+}
+
+.container {
+  margin: 20px auto;
+  width: inherit;
   padding: 0px 20px 20px 20px;
+  height: 400px;
+}
+th {
+  text-align: left;
+}
+
+
+.top {
+  height: 250px;
+  width: 100%;
+  background-size: cover;
+  background-image: url("/header.jpg")
+}
+
+img {
+  position: relative;
+  margin-top: -50px;
+  height: 100%;
+  width: 20%;
+  min-width: 250px;
+}
+
+ul {
+    list-style-type: none;
+    float: right;
+    margin: 0;
+    overflow: hidden;
+    background-color: none;
+    clear: both;
+}
+
+li {
+    margin-top: 0;
+    display: inline-table;
+   /* float: right;*/
+}
+
+li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.clear{
+    clear:both;
+}
+
+#logout
+{
+  display: none;
+  float: right;
+}
+
+#login
+{
+  display: none;
+  float: right;
+}
+
+#lglink {
+}
+
+#loggingout {
+  margin-top: 15px;
+
+}
+
+#loggingin {
+  margin-top: 15px;
+
+}
+
+
+.questions {
+  background: linear-gradient(to bottom right, #5bc0de, #428bca);
+  height: 300px;
+  width: auto;
+}
+
+.statement {
+ font-family: 'Bungee Shade', cursive;
+  float: left;
+}
+
+body {
+  background-image: url("/bg.jpg");
+  width: 100%
+  overflow: hidden;
+}
+
+.fixed {
+clear: both;
+
+}
+
+#reg {
+  display: none;
+  float: right;
+}
+
+#errormessage {
+  color:red;
+  overflow: hidden;
+  float:top;
+  clear: both;
+  margin-right: 15px;
+
+}
+
+#commentform {
+  display: none;
+}
+
+#comment {
+  display: none;
+}
+
+#qlist {
+float: center;
+}
+
+.questions-list {
+  float: left;
+}
+
+.question {
+  padding-left: 50px;
+}
+
+div {
+  clear: both;
+}
+
+#cform {
+
+}
+
+div {
+background: rgba(0, 175, 250, 0.3) ;
+}
+
+p {
+margin-top: 15px;
+margin-bottom: 15px;
+font-family: 'Nunito', sans-serif;
+font-size: 24px;
+color: white;
+}
+
+.question {
+font-family: 'Bungee', cursive;
+font-size: 30px;
+color: white;
+}
+
+.question-title {
+font-family: 'Bungee', cursive;
+font-size: 36px;
+color: white;
+
 }

@@ -11,8 +11,8 @@
    <input class="votebutton" type="submit" value="<%= @questions.votes.count %> votes" style="color: green">
  </form>
 
-<h1><em>  <%= @questions.title %> (<%= @questions.user.username %>) </em></h1>
-<p><%= @questions.body %> </p>
+<h1 class="question-title"><em>  <%= @questions.title %> (<%= @questions.user.username %>) </em></h1>
+<p class="question"><%= @questions.body %> </p>
 <!-- <p class><%=@questions.votes.count%> upvotes</p> -->
 <!-- comments on question -->
 
@@ -111,7 +111,7 @@
 
       <% end %>
 
-    <a href='/answers/<%= answer.id%>/comments/new'> Add a comment</a>
+    <a class="comment-add"href='/answers/<%= answer.id%>/comments/new'> Add a comment</a>
     </div>
   <% end %> <!-- should be end of .each -->
 
