@@ -297,20 +297,35 @@ background: rgba(0, 175, 250, 0.3) ;
 p {
 margin-top: 15px;
 margin-bottom: 15px;
+padding-left: 10px;
 font-family: 'Nunito', sans-serif;
 font-size: 24px;
 color: white;
 }
 
 .question {
+padding-left: 10px;
 font-family: 'Bungee', cursive;
 font-size: 30px;
 color: white;
 }
 
 .question-title {
+padding-left: 10px;
 font-family: 'Bungee', cursive;
 font-size: 36px;
 color: white;
 
+}
+
+.headline {
+padding-left: 10px;
+font-family: 'Nunito', sans-serif;
+font-size: 30px;
+color: white;
+}
+
+.votebutton {
+  margin-left: 25px;
+  padding: 10px;
 }
