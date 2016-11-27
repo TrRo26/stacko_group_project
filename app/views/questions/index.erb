@@ -1,6 +1,6 @@
 <!-- show all questions (index) -->
 <div>
-<h1>Questions Index:</h1>
+<h1 class="headline">Questions Index:</h1>
 
 <%= erb :'_errors' %>
 
@@ -10,5 +10,10 @@
     <a href="/questions/<%= question.id %>"><%= question.title %> (<%= question.user.username %>)</a>
   <% end %>
 <% end %>
+<br>
+<br>
+<br>
+<br>
+<br>
 </div>
 <!-- could add delete-edit button here. or can just be on show.erb -->
