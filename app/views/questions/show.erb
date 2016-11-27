@@ -2,24 +2,14 @@
 <% current_user = User.find(8) %>
 <% session[:user_id] = 8 %>
 <div id="parent">
-<% if @questions.votes.any? { |vote| vote.voter_id == current_user.id} %>
-  <form method="post" action="/votes">
+  <form method="post" class="voteableform" action="/votes">
     <input type="hidden" name="_method" value="delete">
-    <input type="hidden" name="question_id" value="<%= @questions.id %>">
-    <input type="hidden" name="vote[voteable_type]" value="Question">
+    <input type="hidden" class="vid" name="question_id" value="<%= @questions.id %>">
+    <input type="hidden" class="votabletype" name="vote[voteable_type]" value="Question">
     <input type="hidden" name="vote[voteable_id]" value="<%= @questions.id %>">
     <input type="hidden" name="vote[voter_id]" value="<%=current_user.id%> ">
-    <input type="submit" value="Downvote">
-  </form>
-<% else %>
-  <form method="post" class="voteableform" action="/votes">
-    <input type="hidden" name="question_id" value="<%= @questions.id %>">
-    <input type="hidden" class="votabletype" name="vote[voteable_type]" value="Question">
-    <input type="hidden" class="vid" name="vote[voteable_id]" value="<%= @questions.id %>">
-    <input type="hidden" class="votebutton"name="vote[voter_id]" value="<%=current_user.id%> ">
-    <input type="submit" value="Upvote">
-  </form>
-<% end %>
+   <input class="votebutton" type="submit" value="<%= @questions.votes.count %> votes" style="color: green">
+ </form>
 
 <h1><em>  <%= @questions.title %> (<%= @questions.user.username %>) </em></h1>
 <p><%= @questions.body %> </p>
