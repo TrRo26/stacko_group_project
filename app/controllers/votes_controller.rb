@@ -21,6 +21,12 @@ post "/votes" do
       upvote_or_downvoted(@question)
       content_type :json
     { count: @question.votes.count, button_color: button_color }.to_json
+    elsif params["type"] == "Comment"
+      @comment = Comment.find(params["id"])
+      button_color = color(@comment)
+      upvote_or_downvoted(@comment)
+      content_type :json
+    { count: @comment.votes.count, button_color: button_color }.to_json
     end
   end
 end

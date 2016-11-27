@@ -13,7 +13,7 @@
 
 <h1><em>  <%= @questions.title %> (<%= @questions.user.username %>) </em></h1>
 <p><%= @questions.body %> </p>
-<p><%=@questions.votes.count%> upvotes</p>
+<!-- <p class><%=@questions.votes.count%> upvotes</p> -->
 <!-- comments on question -->
 
 <!-- new question form -->
@@ -84,35 +84,16 @@
           <% answer.comments.each do |comment| %>
           <div class="right">
           <!--UPVOTE DEAR GOD-->
-        <% if comment.votes.empty? %>
 
-          <form method="post" action="/votes">
-            <input type="hidden" name="question_id" value="<%= @questions.id %>">
-            <input type="hidden" name="vote[voteable_type]" value="Comment">
-            <input type="hidden" name="vote[voteable_id]" value="<%= comment.id %>">
-            <input type="hidden" name="vote[voter_id]" value="<%=current_user.id%> ">
-            <input type="submit" value="Upvote">
-          </form>
-        <% elsif comment.votes.any? { |vote| vote.voter_id == current_user.id} %>
-          <form method="post" action="/votes">
+
+          <form method="post" class="voteableform" action="/votes">
             <input type="hidden" name="_method" value="delete">
             <input type="hidden" name="question_id" value="<%= @questions.id %>">
-            <input type="hidden" name="vote[voteable_type]" value="Comment">
-            <input type="hidden" name="vote[voteable_id]" value="<%= comment.id %>">
+            <input type="hidden" class="votabletype"name="vote[voteable_type]" value="Comment">
+            <input type="hidden" class="vid"name="vote[voteable_id]" value="<%= comment.id %>">
             <input type="hidden" name="vote[voter_id]" value="<%=current_user.id%> ">
-            <input type="submit" value="Downvote">
+              <input class="votebutton" type="submit" value="<%=comment.votes.count %> votes" style="color: green">
           </form>
-
-        <% else %>
-
-          <form method="post" action="/votes">
-            <input type="hidden" name="question_id" value="<%= @questions.id %>">
-            <input type="hidden" name="vote[voteable_type]" value="Comment">
-            <input type="hidden" name="vote[voteable_id]" value="<%= comment.id %>">
-            <input type="hidden" name="vote[voter_id]" value="<%=current_user.id%> ">
-            <input type="submit" value="Upvote">
-          </form>
-        <% end %>
           <p><%= comment.text %> (<%= comment.commenter.username %>) : <%= comment.votes.count%> upvotes</p>
           <br>
 

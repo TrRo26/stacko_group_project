@@ -5,6 +5,7 @@ $(function(){
     var id = $(this).find(".vid").attr("value")
     var type = $(this).find(".votabletype").attr("value")
     var voteable = {id: id, type: type}
+    console.log(voteable)
       $.ajax({
         url: '/votes',
         method: "post",
@@ -14,7 +15,6 @@ $(function(){
       })
       .done(function(data) {
         $(button).replaceWith(  "<input class='votebutton' type='submit' value='" + data.count +" votes' style='color:" + data.button_color +"'>")
-         $(this).
         });
   })
 
