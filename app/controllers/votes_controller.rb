@@ -1,21 +1,45 @@
-post '/votes' do
-  question_id =  params[:question_id]
 
-  if logged_in?
-    vote = Vote.new(params[:vote])
-    if vote.save
-      puts question_id
-      redirect "/questions/#{question_id}"
-    else
-      @question = Question.find(params[:question_id])
-      @errors = vote.errors.full_messages
 
-      erb :'questions/show'
+
+
+
+post "/votes" do
+  if request.xhr?
+    puts "heeey"
+    p session
+    p params
+    p params["type"]
+    if params["type"] == "Answer"
+      @answer = Answer.find(params["id"])
+      button_color = color(@answer)
+      upvote_or_downvoted(@answer)
+      content_type :json
+    { count: @answer.votes.count, button_color: button_color }.to_json
+    elsif params[:type] == "Question"
     end
-  else
-    redirect "/questions/#{question_id}"
   end
 end
+
+
+
+
+# post '/votes' do
+#   question_id =  params[:question_id]
+#   if logged_in?
+#     vote = Vote.new(params[:vote])
+#     if vote.save
+#       puts question_id
+#       redirect "/questions/#{question_id}"
+#     else
+#       @question = Question.find(params[:question_id])
+#       @errors = vote.errors.full_messages
+
+#       erb :'questions/show'
+#     end
+#   else
+#     redirect "/questions/#{question_id}"
+#   end
+# end
 
 delete '/votes' do
   question_id =  params[:question_id]
