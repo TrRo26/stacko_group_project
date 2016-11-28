@@ -21,4 +21,7 @@ class User < ActiveRecord::Base
   	self.password == password
   end
 
+  def is_posted_user(question)
+  end
+
 end

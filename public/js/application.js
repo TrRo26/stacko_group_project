@@ -9,7 +9,7 @@ $(document).ready(function() {
 
   $("a#login-trigger").on('click', function(event) {
     event.preventDefault();
-
+    $("img").hide();
     $("#login-form").slideToggle();
   });
 
@@ -39,6 +39,7 @@ $(document).ready(function() {
     event.preventDefault();
 
     $("#register-form").slideToggle();
+    $("img").hide()
   });
 
   $('#register-form').on('submit', function(event){

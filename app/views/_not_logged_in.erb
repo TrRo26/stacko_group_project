@@ -1,14 +1,12 @@
 <!-- show a specific question's answers, etc -->
-<% if !logged_in? %>
-<%= erb :_not_logged_in %>
-<% else %>
+
 <div id="parent">
-  <form method="post" class="voteableform" action="/votes">
+  <form method="post"  action="/votes">
     <input type="hidden" name="_method" value="delete">
     <input type="hidden" class="vid" name="question_id" value="<%= @questions.id %>">
     <input type="hidden" class="votabletype" name="vote[voteable_type]" value="Question">
     <input type="hidden" name="vote[voteable_id]" value="<%= @questions.id %>">
-    <input type="hidden" name="vote[voter_id]" value="<%=current_user.id%> ">
+    <input type="hidden" name="vote[voter_id]" value="/">
    <input class="votebutton" type="submit" value="<%= @questions.votes.count %> votes" style="color: green">
  </form>
 
@@ -57,12 +55,12 @@
   <% @answers.each do |answer| %>
   <div class="container">
     <!--UPVOTE DEAR GOD-->
-      <form id="answer" class="voteableform" method="post" action="/votes" >
+      <form id="answer"  method="post" action="/votes" >
         <input type="hidden" name="_method" value="delete">
         <input type="hidden" name="question_id" value="<%= @questions.id %>">
         <input type="hidden" class="votabletype" name="vote[voteable_type]" value="Answer">
         <input type="hidden" class="vid" name="vote[voteable_id]" value="<%= answer.id %>">
-        <input type="hidden" name="vote[voter_id]" value="<%=current_user.id%> ">
+        <input type="hidden" name="vote[voter_id]" value="/">
         <input class="votebutton" type="submit" value="<%=answer.votes.count %> votes" style="color: green">
       </form>
 
@@ -87,12 +85,12 @@
           <!--UPVOTE DEAR GOD-->
 
 
-          <form method="post" class="voteableform" action="/votes">
+          <form method="post"  action="/votes">
             <input type="hidden" name="_method" value="delete">
             <input type="hidden" name="question_id" value="<%= @questions.id %>">
             <input type="hidden" class="votabletype"name="vote[voteable_type]" value="Comment">
             <input type="hidden" class="vid"name="vote[voteable_id]" value="<%= comment.id %>">
-            <input type="hidden" name="vote[voter_id]" value="<%=current_user.id%> ">
+            <input type="hidden" name="vote[voter_id]" value="/">
               <input class="votebutton" type="submit" value="<%=comment.votes.count %> votes" style="color: green">
           </form>
           <p><%= comment.text %> (<%= comment.commenter.username %>) : <%= comment.votes.count%> upvotes</p>
@@ -112,14 +110,8 @@
 
       <% end %>
 
-    <a class="comment-add"href='/answers/<%= answer.id%>/comments/new'> Add a comment</a>
     </div>
   <% end %> <!-- should be end of .each -->
 
 <% end %>
 </div>
-<% end %>
-
-<!-- need BEST ANSWER. -->
-<!-- could make into nice list -->
-<!-- add upvotes thing -->
