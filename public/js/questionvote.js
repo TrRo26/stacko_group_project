@@ -1,11 +1,11 @@
 $(function(){
   $("body").on("submit", ".voteableform",function(e){
     e.preventDefault();
-    console.log("FUUUUCK")
     var button = $(this).find(".votebutton")
     var id = $(this).find(".vid").attr("value")
     var type = $(this).find(".votabletype").attr("value")
     var voteable = {id: id, type: type}
+    console.log(voteable)
       $.ajax({
         url: '/votes',
         method: "post",

@@ -39,10 +39,8 @@ end
 delete '/comments/:id' do
 
   comment = Comment.find(params[:comment_id])
-
-  comment.destroy
   # need to redirect to the correct place.
-  redirect "/questions/#{params[:question_id]}"
+  redirect "/questions"
 end
 
 

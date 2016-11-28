@@ -5,10 +5,6 @@
 
 post "/votes" do
   if request.xhr?
-    puts "heeey"
-    p session
-    p params
-    p params["type"]
     if params["type"] == "Answer"
       @answer = Answer.find(params["id"])
       button_color = color(@answer)
@@ -16,6 +12,33 @@ post "/votes" do
       content_type :json
     { count: @answer.votes.count, button_color: button_color }.to_json
     elsif params[:type] == "Question"
+      @question = Question.find(params["id"])
+      button_color = color(@question)
+      upvote_or_downvoted(@question)
+      content_type :json
+    { count: @question.votes.count, button_color: button_color }.to_json
+    elsif params["type"] == "Comment"
+      @comment = Comment.find(params["id"])
+      button_color = color(@comment)
+      upvote_or_downvoted(@comment)
+      content_type :json
+    { count: @comment.votes.count, button_color: button_color }.to_json
+    end
+  else
+      question_id =  params[:question_id]
+    if logged_in?
+      vote = Vote.new(params[:vote])
+      if vote.save
+        puts question_id
+        redirect "/questions/#{question_id}"
+      else
+        @question = Question.find(params[:question_id])
+        @errors = vote.errors.full_messages
+
+        erb :'questions/show'
+      end
+    else
+      redirect "/questions/#{question_id}"
     end
   end
 end
@@ -23,23 +46,23 @@ end
 
 
 
-# post '/votes' do
-#   question_id =  params[:question_id]
-#   if logged_in?
-#     vote = Vote.new(params[:vote])
-#     if vote.save
-#       puts question_id
-#       redirect "/questions/#{question_id}"
-#     else
-#       @question = Question.find(params[:question_id])
-#       @errors = vote.errors.full_messages
+post '/votes' do
+  question_id =  params[:question_id]
+  if logged_in?
+    vote = Vote.new(params[:vote])
+    if vote.save
+      puts question_id
+      redirect "/questions/#{question_id}"
+    else
+      @question = Question.find(params[:question_id])
+      @errors = vote.errors.full_messages
 
-#       erb :'questions/show'
-#     end
-#   else
-#     redirect "/questions/#{question_id}"
-#   end
-# end
+      erb :'questions/show'
+    end
+  else
+    redirect "/questions/#{question_id}"
+  end
+end
 
 delete '/votes' do
   question_id =  params[:question_id]
